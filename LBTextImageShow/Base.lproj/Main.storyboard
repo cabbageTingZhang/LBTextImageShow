@@ -115,7 +115,7 @@
                                     <constraint firstAttribute="width" constant="300" id="sEF-YV-Z7x"/>
                                 </constraints>
                             </imageView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="ugn-OD-5n1">
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="ugn-OD-5n1">
                                 <rect key="frame" x="177.5" y="312" width="20" height="20"/>
                             </activityIndicatorView>
                         </subviews>

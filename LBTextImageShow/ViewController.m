@@ -24,14 +24,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
-    
-    UILabel *textLab = [[UILabel alloc] init];
-    textLab.frame = CGRectMake(16, 100, 100, 100);
-    textLab.backgroundColor = [UIColor redColor];
-    textLab.text = @"hello world";
-    textLab.textAlignment = NSTextAlignmentCenter;
-    [self.view addSubview:textLab];
+    self.activityIndicator.hidden = YES;
 }
     
 - (IBAction)openCamera:(id)sender {//打开照相机
@@ -51,10 +44,12 @@
     }];
     [imagePickerVc setDidFinishPickingPhotosHandle:^(NSArray<UIImage *> *photos, NSArray *assets, BOOL isSelectOriginalPhoto) {
         if (photos.count > 0) {
+            weakSelf.activityIndicator.hidden = NO;
+            [weakSelf.activityIndicator startAnimating];
             NSData *imageData = UIImageJPEGRepresentation(photos.firstObject, 1);
             [weakSelf tesseractRecogniceWithImage:photos.firstObject compleate:^(NSString *text) {
+                [weakSelf.activityIndicator stopAnimating];
                 if (text != nil) {
-                    
                     UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"检测结果" message:text preferredStyle:UIAlertControllerStyleAlert];
                     
                     UIAlertAction *alertTitle = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
@@ -63,7 +58,7 @@
                     [alertC addAction:alertTitle];
                     [weakSelf presentViewController:alertC animated:YES completion:nil];
                 }else{
-                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"照片识别失败，请选择清晰、没有复杂背景的身份证照片重试！" delegate:self cancelButtonTitle:@"知道了" otherButtonTitles: nil];
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"照片识别失败，请选择清晰、没有复杂背景的身份证照片重试！" delegate:weakSelf cancelButtonTitle:@"知道了" otherButtonTitles: nil];
                     [alert show];
                 }
             }];
@@ -73,20 +68,33 @@
     [self presentViewController:imagePickerVc animated:YES completion:nil];
 }
     
-- (IBAction)recognizeSampleImage:(id)sender {//识别一些简单的图片
-    
+- (IBAction)recognizeSampleImage:(id)sender {//识别一些简单的图片, 可替换下面的图片试一下效果(注意jpg类型的图片, 要注意全名+后缀.jpg)
+    WEAKSELF
+    self.activityIndicator.hidden = NO;
+    [self.activityIndicator startAnimating];
+    [self tesseractRecogniceWithImage:[UIImage imageNamed:@"well_scaned_page"] compleate:^(NSString *text) {
+        [weakSelf.activityIndicator stopAnimating];
+        if (text != nil) {
+            UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"检测结果" message:text preferredStyle:UIAlertControllerStyleAlert];
+            
+            UIAlertAction *alertTitle = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                
+            }];
+            [alertC addAction:alertTitle];
+            [weakSelf presentViewController:alertC animated:YES completion:nil];
+        }else{
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"照片识别失败，请选择清晰、没有复杂背景的身份证照片重试！" delegate:weakSelf cancelButtonTitle:@"知道了" otherButtonTitles: nil];
+            [alert show];
+        }
+    }];
 }
 
 - (IBAction)clearCache:(id)sender {//清楚缓存
-    
-}
-    
-- (void)recognizeImageWithTesseract:(UIImage *)image{
-        
+    [G8Tesseract clearCache];//暂时不知道什么用,你可以点击去看这个方法的注释
 }
 
 - (void)tesseractRecogniceWithImage:(UIImage *)image compleate:(void(^)(NSString *text))compleate {//图片转文字识别
-    G8Tesseract *tesseract = [[G8Tesseract alloc]initWithLanguage:@"eng"];
+    G8Tesseract *tesseract = [[G8Tesseract alloc]initWithLanguage:@"eng"];//这个貌似只能识别英文, 识别中文将eng改为chi_sim
     //模式
     tesseract.engineMode = G8OCREngineModeTesseractOnly;
     tesseract.maximumRecognitionTime = 10;
