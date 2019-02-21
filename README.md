@@ -1,0 +1,2 @@
+# LBTextImageShow
+文字识别自研解析demo，希望能帮到一部分对于TesseractOCRiOS不是太清楚，或者小白的那一类人
