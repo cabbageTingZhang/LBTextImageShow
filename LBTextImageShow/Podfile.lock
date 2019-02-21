@@ -1,0 +1,38 @@
+PODS:
+  - AFNetworking (3.2.1):
+    - AFNetworking/NSURLSession (= 3.2.1)
+    - AFNetworking/Reachability (= 3.2.1)
+    - AFNetworking/Security (= 3.2.1)
+    - AFNetworking/Serialization (= 3.2.1)
+    - AFNetworking/UIKit (= 3.2.1)
+  - AFNetworking/NSURLSession (3.2.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (3.2.1)
+  - AFNetworking/Security (3.2.1)
+  - AFNetworking/Serialization (3.2.1)
+  - AFNetworking/UIKit (3.2.1):
+    - AFNetworking/NSURLSession
+  - TesseractOCRiOS (4.0.0)
+  - TZImagePickerController (3.1.5)
+
+DEPENDENCIES:
+  - AFNetworking
+  - TesseractOCRiOS
+  - TZImagePickerController
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - AFNetworking
+    - TesseractOCRiOS
+    - TZImagePickerController
+
+SPEC CHECKSUMS:
+  AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
+  TesseractOCRiOS: 90638afbe43d082433f2e76b384c7901d23956df
+  TZImagePickerController: 6cc6e9c1a73bb8e62cfef98fd40af2d90634dcf5
+
+PODFILE CHECKSUM: cf930f7b1a1d9f2a536ef7072307bf11842e847f
+
+COCOAPODS: 1.6.0
