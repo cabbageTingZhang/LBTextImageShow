@@ -6,6 +6,8 @@
 //  Copyright © 2019 SuperCabbage. All rights reserved.
 //
 
+#define WEAKSELF __weak __typeof(&*self)weakSelf = self;
+
 #import "ViewController.h"
 #import <TesseractOCR/TesseractOCR.h>
 #import <TZImageManager.h>
@@ -33,6 +35,7 @@
 }
     
 - (IBAction)openCamera:(id)sender {//打开照相机
+    WEAKSELF
     TZImagePickerController *imagePickerVc = [[TZImagePickerController alloc] initWithMaxImagesCount:1 delegate:self];
     imagePickerVc.navigationBar.barTintColor = [UIColor whiteColor];
     imagePickerVc.barItemTextColor = [UIColor colorWithHexString:@"#333333"];
@@ -47,6 +50,25 @@
         [leftButton setImageEdgeInsets:UIEdgeInsetsMake(0, -20, 0, 20)];
     }];
     [imagePickerVc setDidFinishPickingPhotosHandle:^(NSArray<UIImage *> *photos, NSArray *assets, BOOL isSelectOriginalPhoto) {
+        if (photos.count > 0) {
+            NSData *imageData = UIImageJPEGRepresentation(photos.firstObject, 1);
+            [weakSelf tesseractRecogniceWithImage:photos.firstObject compleate:^(NSString *text) {
+                if (text != nil) {
+                    
+                    UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"检测结果" message:text preferredStyle:UIAlertControllerStyleAlert];
+                    
+                    UIAlertAction *alertTitle = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                        
+                    }];
+                    [alertC addAction:alertTitle];
+                    [weakSelf presentViewController:alertC animated:YES completion:nil];
+                }else{
+                    self.recoginLab.text = @"请重新拍照";
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"照片识别失败，请选择清晰、没有复杂背景的身份证照片重试！" delegate:self cancelButtonTitle:@"知道了" otherButtonTitles: nil];
+                    [alert show];
+                }
+            }];
+        }
         
     }];
     [self presentViewController:imagePickerVc animated:YES completion:nil];
@@ -69,7 +91,7 @@
     //模式
     tesseract.engineMode = G8OCREngineModeTesseractOnly;
     tesseract.maximumRecognitionTime = 10;
-    tesseract.pageSegmentationMode = G8PageSegmentationModeAuto;
+    tesseract.pageSegmentationMode = G8PageSegmentationModeAutoOnly;
     tesseract.image = [image g8_blackAndWhite];
     
     [tesseract recognize];
