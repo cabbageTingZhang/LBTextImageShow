@@ -63,7 +63,6 @@
                     [alertC addAction:alertTitle];
                     [weakSelf presentViewController:alertC animated:YES completion:nil];
                 }else{
-                    self.recoginLab.text = @"请重新拍照";
                     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"照片识别失败，请选择清晰、没有复杂背景的身份证照片重试！" delegate:self cancelButtonTitle:@"知道了" otherButtonTitles: nil];
                     [alert show];
                 }
