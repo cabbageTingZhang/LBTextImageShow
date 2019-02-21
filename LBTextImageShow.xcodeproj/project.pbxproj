@@ -16,6 +16,8 @@
 		A8D20AF8221BE98F0094BC76 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A8D20AF7221BE98F0094BC76 /* main.m */; };
 		A8D20B02221BE98F0094BC76 /* LBTextImageShowTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A8D20B01221BE98F0094BC76 /* LBTextImageShowTests.m */; };
 		A8D20B0D221BE98F0094BC76 /* LBTextImageShowUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = A8D20B0C221BE98F0094BC76 /* LBTextImageShowUITests.m */; };
+		A8DD96AC221E4415006F3E2D /* tessdata-rus in Resources */ = {isa = PBXBuildFile; fileRef = A8DD96AB221E4415006F3E2D /* tessdata-rus */; };
+		A8DD96AE221E44C6006F3E2D /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = A8DD96AD221E44C6006F3E2D /* tessdata */; };
 		DCE30ED107005457368DF10E /* libPods-LBTextImageShow.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C2FCD7701AE6126B84BE32D2 /* libPods-LBTextImageShow.a */; };
 /* End PBXBuildFile section */
 
@@ -57,6 +59,8 @@
 		A8D20B08221BE98F0094BC76 /* LBTextImageShowUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LBTextImageShowUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8D20B0C221BE98F0094BC76 /* LBTextImageShowUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LBTextImageShowUITests.m; sourceTree = "<group>"; };
 		A8D20B0E221BE98F0094BC76 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A8DD96AB221E4415006F3E2D /* tessdata-rus */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "tessdata-rus"; sourceTree = "<group>"; };
+		A8DD96AD221E44C6006F3E2D /* tessdata */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tessdata; sourceTree = "<group>"; };
 		C2FCD7701AE6126B84BE32D2 /* libPods-LBTextImageShow.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LBTextImageShow.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -111,6 +115,8 @@
 		A8D20AE7221BE98D0094BC76 /* LBTextImageShow */ = {
 			isa = PBXGroup;
 			children = (
+				A8DD96AD221E44C6006F3E2D /* tessdata */,
+				A8DD96AB221E4415006F3E2D /* tessdata-rus */,
 				A8D20AE8221BE98D0094BC76 /* AppDelegate.h */,
 				A8D20AE9221BE98D0094BC76 /* AppDelegate.mm */,
 				A8D20AEB221BE98D0094BC76 /* ViewController.h */,
@@ -268,7 +274,9 @@
 			files = (
 				A8D20AF5221BE98F0094BC76 /* LaunchScreen.storyboard in Resources */,
 				A8D20AF2221BE98F0094BC76 /* Assets.xcassets in Resources */,
+				A8DD96AE221E44C6006F3E2D /* tessdata in Resources */,
 				A8D20AF0221BE98D0094BC76 /* Main.storyboard in Resources */,
+				A8DD96AC221E4415006F3E2D /* tessdata-rus in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
