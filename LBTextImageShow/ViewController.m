@@ -64,5 +64,17 @@
         
 }
 
+- (void)tesseractRecogniceWithImage:(UIImage *)image compleate:(void(^)(NSString *text))compleate {//图片转文字识别
+    G8Tesseract *tesseract = [[G8Tesseract alloc]initWithLanguage:@"eng"];
+    //模式
+    tesseract.engineMode = G8OCREngineModeTesseractOnly;
+    tesseract.maximumRecognitionTime = 10;
+    tesseract.pageSegmentationMode = G8PageSegmentationModeAuto;
+    tesseract.image = [image g8_blackAndWhite];
+    
+    [tesseract recognize];
+    compleate(tesseract.recognizedText);
+}
+
 
 @end
