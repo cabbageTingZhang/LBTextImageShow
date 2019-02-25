@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A873C3BB221D56D400B862CE /* UIColor+K1Util.m in Sources */ = {isa = PBXBuildFile; fileRef = A873C3B9221D56D400B862CE /* UIColor+K1Util.m */; };
+		A8BC8C64221EA06A00487B2E /* RecogizeCardManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = A8BC8C63221EA06A00487B2E /* RecogizeCardManager.mm */; };
 		A8D20AEA221BE98D0094BC76 /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = A8D20AE9221BE98D0094BC76 /* AppDelegate.mm */; };
 		A8D20AED221BE98D0094BC76 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A8D20AEC221BE98D0094BC76 /* ViewController.m */; };
 		A8D20AF0221BE98D0094BC76 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8D20AEE221BE98D0094BC76 /* Main.storyboard */; };
@@ -66,6 +67,8 @@
 		31D77EF0A35EE53653EDBBF4 /* Pods-LBTextImageShow.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LBTextImageShow.release.xcconfig"; path = "Target Support Files/Pods-LBTextImageShow/Pods-LBTextImageShow.release.xcconfig"; sourceTree = "<group>"; };
 		A873C3B9221D56D400B862CE /* UIColor+K1Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+K1Util.m"; sourceTree = "<group>"; };
 		A873C3BA221D56D400B862CE /* UIColor+K1Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+K1Util.h"; sourceTree = "<group>"; };
+		A8BC8C62221EA06A00487B2E /* RecogizeCardManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RecogizeCardManager.h; sourceTree = "<group>"; };
+		A8BC8C63221EA06A00487B2E /* RecogizeCardManager.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = RecogizeCardManager.mm; sourceTree = "<group>"; };
 		A8D20AE5221BE98D0094BC76 /* LBTextImageShow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LBTextImageShow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8D20AE8221BE98D0094BC76 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		A8D20AE9221BE98D0094BC76 /* AppDelegate.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = AppDelegate.mm; sourceTree = "<group>"; };
@@ -136,6 +139,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A8BC8C61221EA03A00487B2E /* RecogizeCarManager */ = {
+			isa = PBXGroup;
+			children = (
+				A8BC8C62221EA06A00487B2E /* RecogizeCardManager.h */,
+				A8BC8C63221EA06A00487B2E /* RecogizeCardManager.mm */,
+			);
+			path = RecogizeCarManager;
+			sourceTree = "<group>";
+		};
 		A8D20ADC221BE98D0094BC76 = {
 			isa = PBXGroup;
 			children = (
@@ -161,6 +173,7 @@
 		A8D20AE7221BE98D0094BC76 /* LBTextImageShow */ = {
 			isa = PBXGroup;
 			children = (
+				A8BC8C61221EA03A00487B2E /* RecogizeCarManager */,
 				A8DD96AF221E49B6006F3E2D /* LBImage */,
 				A8DD96AD221E44C6006F3E2D /* tessdata */,
 				A8DD96AB221E4415006F3E2D /* tessdata-rus */,
@@ -255,7 +268,6 @@
 				A8D20AE1221BE98D0094BC76 /* Sources */,
 				A8D20AE2221BE98D0094BC76 /* Frameworks */,
 				A8D20AE3221BE98D0094BC76 /* Resources */,
-				4F5DFDF04037FBD67DC05C47 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -397,28 +409,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		4F5DFDF04037FBD67DC05C47 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-LBTextImageShow/Pods-LBTextImageShow-resources.sh",
-				"${PODS_ROOT}/TZImagePickerController/TZImagePickerController/TZImagePickerController/TZImagePickerController.bundle",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/TZImagePickerController.bundle",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-LBTextImageShow/Pods-LBTextImageShow-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		657DC50E3BB5C274C52CDDA8 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -452,6 +442,7 @@
 				A873C3BB221D56D400B862CE /* UIColor+K1Util.m in Sources */,
 				A8D20AF8221BE98F0094BC76 /* main.m in Sources */,
 				A8D20AEA221BE98D0094BC76 /* AppDelegate.mm in Sources */,
+				A8BC8C64221EA06A00487B2E /* RecogizeCardManager.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

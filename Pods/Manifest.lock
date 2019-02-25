@@ -1,20 +1,3 @@
-PODS:
-  - TesseractOCRiOS (4.0.0)
-  - TZImagePickerController (3.1.5)
-
-DEPENDENCIES:
-  - TesseractOCRiOS
-  - TZImagePickerController
-
-SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
-    - TesseractOCRiOS
-    - TZImagePickerController
-
-SPEC CHECKSUMS:
-  TesseractOCRiOS: 90638afbe43d082433f2e76b384c7901d23956df
-  TZImagePickerController: 6cc6e9c1a73bb8e62cfef98fd40af2d90634dcf5
-
-PODFILE CHECKSUM: 514845229215cefe08b5f2ed30ca7bf7c33ebd3e
+PODFILE CHECKSUM: a2124618e29d1fed8de504b670d92929f5ae1b92
 
 COCOAPODS: 1.6.0

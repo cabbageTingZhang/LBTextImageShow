@@ -13,6 +13,10 @@
 #import <TZImageManager.h>
 #import <TZImagePickerController.h>
 #import "UIColor+K1Util.h"
+#import "RecogizeCarManager/RecogizeCardManager.h"
+//#import <opencv2/opencv.hpp>
+//#import <opencv2/imgproc/types_c.h>
+//#import <opencv2/imgcodecs/ios.h>
 
 @interface ViewController ()<TZImagePickerControllerDelegate>
     @property (weak, nonatomic) IBOutlet UIImageView *imageToRecognize;
@@ -47,13 +51,12 @@
             weakSelf.activityIndicator.hidden = NO;
             [weakSelf.activityIndicator startAnimating];
             NSData *imageData = UIImageJPEGRepresentation(photos.firstObject, 1);
-            [weakSelf tesseractRecogniceWithImage:photos.firstObject compleate:^(NSString *text) {
-                [weakSelf.activityIndicator stopAnimating];
+            [[RecogizeCardManager recognizeCardManager] recognizeCardWithImage:photos.firstObject compleate:^(NSString *text) {
                 if (text != nil) {
                     UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"检测结果" message:text preferredStyle:UIAlertControllerStyleAlert];
-                    
+
                     UIAlertAction *alertTitle = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                        
+
                     }];
                     [alertC addAction:alertTitle];
                     [weakSelf presentViewController:alertC animated:YES completion:nil];
@@ -62,6 +65,21 @@
                     [alert show];
                 }
             }];
+//            [weakSelf tesseractRecogniceWithImage:photos.firstObject compleate:^(NSString *text) {
+//                [weakSelf.activityIndicator stopAnimating];
+//                if (text != nil) {
+//                    UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"检测结果" message:text preferredStyle:UIAlertControllerStyleAlert];
+//
+//                    UIAlertAction *alertTitle = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+//
+//                    }];
+//                    [alertC addAction:alertTitle];
+//                    [weakSelf presentViewController:alertC animated:YES completion:nil];
+//                }else{
+//                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"照片识别失败，请选择清晰、没有复杂背景的身份证照片重试！" delegate:weakSelf cancelButtonTitle:@"知道了" otherButtonTitles: nil];
+//                    [alert show];
+//                }
+//            }];
         }
         
     }];
@@ -72,20 +90,37 @@
     WEAKSELF
     self.activityIndicator.hidden = NO;
     [self.activityIndicator startAnimating];
-    [self tesseractRecogniceWithImage:[UIImage imageNamed:@"well_scaned_page"] compleate:^(NSString *text) {
-        [weakSelf.activityIndicator stopAnimating];
-        if (text != nil) {
-            UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"检测结果" message:text preferredStyle:UIAlertControllerStyleAlert];
-            
-            UIAlertAction *alertTitle = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+//    [self tesseractRecogniceWithImage:[UIImage imageNamed:@"well_scaned_page"] compleate:^(NSString *text) {
+//        [weakSelf.activityIndicator stopAnimating];
+//        if (text != nil) {
+//            UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"检测结果" message:text preferredStyle:UIAlertControllerStyleAlert];
+//
+//            UIAlertAction *alertTitle = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+//
+//            }];
+//            [alertC addAction:alertTitle];
+//            [weakSelf presentViewController:alertC animated:YES completion:nil];
+//        }else{
+//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"照片识别失败，请选择清晰、没有复杂背景的身份证照片重试！" delegate:weakSelf cancelButtonTitle:@"知道了" otherButtonTitles: nil];
+//            [alert show];
+//        }
+//    }];
+    [[RecogizeCardManager recognizeCardManager] recognizeCardWithImage:[UIImage imageNamed:@"image_sample.jpg"] compleate:^(NSString *text) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [weakSelf.activityIndicator stopAnimating];
+            if (text != nil) {
+                UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"检测结果" message:text preferredStyle:UIAlertControllerStyleAlert];
                 
-            }];
-            [alertC addAction:alertTitle];
-            [weakSelf presentViewController:alertC animated:YES completion:nil];
-        }else{
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"照片识别失败，请选择清晰、没有复杂背景的身份证照片重试！" delegate:weakSelf cancelButtonTitle:@"知道了" otherButtonTitles: nil];
-            [alert show];
-        }
+                UIAlertAction *alertTitle = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                    
+                }];
+                [alertC addAction:alertTitle];
+                [weakSelf presentViewController:alertC animated:YES completion:nil];
+            }else{
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"照片识别失败，请选择清晰、没有复杂背景的身份证照片重试！" delegate:weakSelf cancelButtonTitle:@"知道了" otherButtonTitles: nil];
+                [alert show];
+            }
+        });
     }];
 }
 
